@@ -3,10 +3,8 @@ var helmet = require('helmet');
 
 var app = express();
 
-// use helmet for security benefits
 app.use(helmet());
-
-
+app.use(helmet.hidePoweredBy());
 
 
 
