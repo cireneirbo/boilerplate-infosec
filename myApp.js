@@ -1,9 +1,10 @@
 var express = require('express');
+var helmet = require('helmet');
+
 var app = express();
-//boilerplate above
 
-
-
+// use helmet for security benefits
+app.use(helmet());
 
 
 
