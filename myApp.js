@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+//boilerplate above
 
 
 
@@ -45,8 +46,7 @@ var app = express();
 
 
 
-
-
+// boilerplate below
 module.exports = app;
 var api = require('./server.js');
 app.use(express.static('public'));
