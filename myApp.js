@@ -1,59 +1,19 @@
-var express = require('express');
-var helmet = require('helmet');
+const express = require('express');
 
-var app = express();
+const app = express();
 
-//app.use(helmet());
-app.use(helmet.hidePoweredBy());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// boilerplate below
 module.exports = app;
-var api = require('./server.js');
+const helmet = require('helmet');
+const api = require('./server.js');
+app.use(helmet());
+app.use(helmet.hidePoweredBy());
+app.disable("x-powered-by");
 app.use(express.static('public'));
 app.disable('strict-transport-security');
 app.use('/_api', api);
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
-var listener = app.listen(process.env.PORT || 3000, function () {
+const listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });

@@ -3,10 +3,10 @@
  * the verification process may break
  *******************************************/
  
-var express = require('express');
-var app = express();
-var fs = require('fs');
-var path = require('path');
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const path = require('path');
 
 app.use(function(req, res, next) {
   res.set({
@@ -26,11 +26,11 @@ app.get('/file/*?', function(req, res, next) {
 });
 
 
-var main = require('./myApp.js');
+const main = require('./myApp.js');
 app.get('/app-info', function(req, res) {
   
   // list middlewares mounted on the '/' camper's app
-  var appMainRouteStack = main._router.stack
+  const appMainRouteStack = main._router.stack
     .filter(s => s.path === '')
     .map(l => l.name)
     // filter out express default middlewares
@@ -38,9 +38,9 @@ app.get('/app-info', function(req, res) {
       n === 'expressInit' || n === 'serveStatic'));
     
     // filter out CORS Headers
-    var hs = Object.keys(res._headers)
+    const hs = Object.keys(res._headers)
       .filter(h => !h.match(/^access-control-\w+/));
-    var hObj = {};
+    const hObj = {};
     hs.forEach(h => {hObj[h] = res._headers[h]});
     delete res._headers['strict-transport-security'];
   res.json({headers: hObj, appStack: appMainRouteStack });
